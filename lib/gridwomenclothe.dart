@@ -5,24 +5,23 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class GridElectronic extends StatefulWidget {
-  const GridElectronic({super.key});
+class GridWomenClothes extends StatefulWidget {
+  const GridWomenClothes({super.key});
 
   @override
-  State<GridElectronic> createState() => _GridElectronicState();
+  State<GridWomenClothes> createState() => _GridWomenClothesState();
 }
 
-class _GridElectronicState extends State<GridElectronic> {
-  List<dynamic> dataElectronicts = [];
-
-  Future<void> getDataElectronic() async {
-    String urlelectronicproduct =
-        "http://10.0.3.2/backend_ecommerce/categoryelectronic.php";
+class _GridWomenClothesState extends State<GridWomenClothes> {
+   List<dynamic> dataWoman = [];
+  Future<void> getWomanClothes() async {
+    String urlAllWomanClothes =
+        "http://10.0.3.2/backend_ecommerce/womanclothes.php";
     try {
-      var response = await http.get(Uri.parse(urlelectronicproduct));
-      dataElectronicts = jsonDecode(response.body);
+      var response = await http.get(Uri.parse(urlAllWomanClothes));
+      dataWoman = jsonDecode(response.body);
       setState(() {
-        dataElectronicts = jsonDecode(response.body);
+        dataWoman = jsonDecode(response.body);
       });
     } catch (exc) {
       if (kDebugMode) {
@@ -34,19 +33,20 @@ class _GridElectronicState extends State<GridElectronic> {
   @override
   void initState() {
     super.initState();
-    getDataElectronic();
+    getWomanClothes();
   }
 
-  void itemDAtaTap(int index) {
-    final itemData = dataElectronicts[index];
+  void itemDataTap(int index) {
+    final itemData = dataWoman[index];
     if (kDebugMode) {
-      print("Product Name : $itemData['name]");
+      print("Product Name : $itemData['name']");
     }
-    Navigator.push(context,
+   Navigator.push(context,
         MaterialPageRoute(builder: (context) => DetilScreen(item: itemData)));
   }
 
-  @override
+
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -54,36 +54,32 @@ class _GridElectronicState extends State<GridElectronic> {
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(
-            CupertinoIcons.arrow_left,
+            Icons.arrow_left,
             size: 22,
             color: Colors.white,
           ),
         ),
-        title: const Text(
-          "Electronic Products",
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
+        title: const Text("Woman Clothes"),
         centerTitle: true,
-        actions: [
+       actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                CupertinoIcons.cart,
+                size: 22,
+                color: Colors.white,
+              )),
           IconButton(
             onPressed: () {},
             icon: const Icon(
-              CupertinoIcons.info,
+              CupertinoIcons.profile_circled,
               size: 22,
               color: Colors.white,
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              CupertinoIcons.cart,
-              size: 22,
-              color: Colors.white,
-            ),
-          )
         ],
       ),
+
       body: Center(
         child: GridView.builder(
             reverse: false,
@@ -92,83 +88,86 @@ class _GridElectronicState extends State<GridElectronic> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 10.0,
                 mainAxisSpacing: 10.0),
-            itemCount: dataElectronicts.length,
+            itemCount: dataWoman.length,
             itemBuilder: (context, index) {
-              final itemData = dataElectronicts[index];
+              final itemData = dataWoman[index];
               return GestureDetector(
                 onTap: () {
-                  itemDAtaTap(index);
+                  itemDataTap(index);
                 },
                 child: Card(
-                  child: Column(children: [
-                    Image.network(
-                      itemData['images'],
-                      height: 125,
-                      width: 150,
-                      fit: BoxFit.fill,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) {
-                          return child;
-                        } else {
-                          return CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null
-                                ? loadingProgress.cumulativeBytesLoaded /
-                                    (loadingProgress.expectedTotalBytes ?? 1)
-                                : null,
-                          );
-                        }
-                      },
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Text(
-                          "Error Loading Product Images",
-                          textAlign: TextAlign.justify,
-                        );
-                      },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      child: Text(
-                        itemData['name'],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
+                  child: Column(
+                    children: [
+                      Image.network(
+                        itemData['images'],
+                        height: 100,
+                        width: 120,
+                        fit: BoxFit.fill,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      (loadingProgress.expectedTotalBytes ?? 1)
+                                  : null,
+                            );
+                          }
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Text("Error Loading Product Images",
+                              textAlign: TextAlign.justify);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        child: Text(
+                          itemData['name'],
+                          style: const TextStyle(
                             color: Colors.red,
                             fontSize: 12,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Rp.' '${itemData['price']}',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.bold,
                           ),
-                           Row(
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Icon(
-                                Icons.favorite,
-                                size: 10,
-                                color: Colors.red,
+                            Text(
+                              'Rp '
+                              '${itemData['price'].toString()}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
                               ),
-                                 Text(
-                            'Rp.' '${itemData['promo']}',
-                            style: const TextStyle(
+                            ),
+
+                             Row(
+                              children: [
+                               const Icon(Icons.favorite, 
+                                size: 10,
+                                color: Colors.red,),
+                                Text( 'Rp '
+                              '${itemData['promo'].toString()}',
+                               style: const TextStyle(
                                 color: Colors.green,
                                 fontSize: 10,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,
+                              ),
+                              )
+                              ],
+                              
+                            ),
+                            
+                          ]
+                          )
                           ),
-                            ],
-                          ),
-                       
-                        ],
-                      ),
-                    )
-                  ]),
+                    ],
+                  ),
                 ),
               );
             }),

@@ -63,6 +63,11 @@ flutter:
   assets:
     - images/banner.png
     - images/cart.png
+    - images/baju-pria.png
+    - images/baju-wanita.png
+    - images/sepatu-pria.png
+    - images/sepatu-wanita.png
+    - images/elektronik.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

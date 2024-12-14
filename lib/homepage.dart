@@ -1,3 +1,4 @@
+import 'package:ecommercedzaky/onboardingpage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,7 +15,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade400,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OnboardingPage()));
+          },
           icon: const Icon(
             Icons.person,
             size: 22,
