@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ecommercedzaky/homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,12 @@ class _GridElectronicState extends State<GridElectronic> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade400,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HomePage()));
+            },
           icon: const Icon(
             CupertinoIcons.arrow_left,
             size: 22,
@@ -171,7 +177,8 @@ class _GridElectronicState extends State<GridElectronic> {
                   ]),
                 ),
               );
-            }),
+            },
+            ),
       ),
     );
   }

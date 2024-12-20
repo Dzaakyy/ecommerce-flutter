@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ecommercedzaky/homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +53,14 @@ class _GridWomenClothesState extends State<GridWomenClothes> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade400,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HomePage()));
+            },
           icon: const Icon(
-            Icons.arrow_left,
+            CupertinoIcons.arrow_left,
             size: 22,
             color: Colors.white,
           ),
