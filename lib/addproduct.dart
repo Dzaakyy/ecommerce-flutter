@@ -25,7 +25,7 @@ class _AddNewProductState extends State<AddNewProduct> {
   final _images = TextEditingController();
   Future<void> addNewProduct() async {
    String urlNewProduct = 
-      "http://10.0.3.2/backend_ecommerce/addproduct.php";
+      "http://10.0.2.2/backend_ecommerce/addproduct.php";
     try {
       var resAddProduct = await http.post(Uri.parse(urlNewProduct),body: {
         "name":_name.text.toString(),

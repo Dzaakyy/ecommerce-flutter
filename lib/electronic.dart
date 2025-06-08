@@ -18,7 +18,7 @@ class _GridElectronicState extends State<GridElectronic> {
 
   Future<void> getDataElectronic() async {
     String urlelectronicproduct =
-        "http://10.0.3.2/backend_ecommerce/categoryelectronic.php";
+        "http://10.0.2.2/backend_ecommerce/categoryelectronic.php";
     try {
       var response = await http.get(Uri.parse(urlelectronicproduct));
       dataElectronicts = jsonDecode(response.body);

@@ -17,7 +17,7 @@ class _GridWomenClothesState extends State<GridWomenClothes> {
    List<dynamic> dataWoman = [];
   Future<void> getWomanClothes() async {
     String urlAllWomanClothes =
-        "http://10.0.3.2/backend_ecommerce/womanclothes.php";
+        "http://10.0.2.2/backend_ecommerce/womanclothes.php";
     try {
       var response = await http.get(Uri.parse(urlAllWomanClothes));
       dataWoman = jsonDecode(response.body);

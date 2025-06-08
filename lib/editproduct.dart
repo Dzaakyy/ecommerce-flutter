@@ -1,80 +1,79 @@
-// import 'package:flutter/foundation.dart';
-import 'dart:convert';
+  import 'dart:convert';
 
-import 'package:ecommercedzaky/allproduct.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+  import 'package:ecommercedzaky/allproduct.dart';
+  import 'package:flutter/foundation.dart';
+  import 'package:flutter/material.dart';
+  import 'package:http/http.dart' as http;
 
-class EditProduct extends StatefulWidget {
-  final Map<String, dynamic> product;
-  const EditProduct({super.key, required this.product});
+  class EditProduct extends StatefulWidget {
+    final Map<String, dynamic> product;
+    const EditProduct({super.key, required this.product});
 
-  
+    
 
-  @override
-  State<EditProduct> createState() => _EditProductState();
-}
-
-class _EditProductState extends State<EditProduct> {
-  final _id = TextEditingController();
-  final _name = TextEditingController();
-  final _price = TextEditingController();
-  final _stock = TextEditingController();
-  final _vendors = TextEditingController();
-  final _promo = TextEditingController();
-  final _description = TextEditingController();
-  final _category = TextEditingController();
-  final _images = TextEditingController();
-
-  @override
-  void initState(){
-    super.initState();
-    _id.text = widget.product['id'].toString();
-    _name.text = widget.product['name'].toString();
-    _price.text = widget.product['price'].toString();
-    _stock.text = widget.product['stock'].toString();
-    _vendors.text = widget.product['vendors'].toString();
-    _promo.text = widget.product['promo'].toString();
-    _description.text = widget.product['description'].toString();
-    _category.text = widget.product['category'].toString();
-    _images.text = widget.product['images'].toString();
+    @override
+    State<EditProduct> createState() => _EditProductState();
   }
 
-  Future<void> editProduct() async {
-   String urlEditProduct = 
-      "http://10.0.3.2/backend_ecommerce/updateproduct.php";
-    try {
-      var resEditProduct = await http.post(Uri.parse(urlEditProduct),body: {
-        "id":_id.text,
-        "name":_name.text,
-        "price":_price.text,
-        "stock":_stock.text,
-        "vendors":_vendors.text,
-        "promo":_promo.text,
-        "description":_description.text,
-        "category":_category.text,
-        "images":_images.text});
+  class _EditProductState extends State<EditProduct> {
+    final _id = TextEditingController();
+    final _name = TextEditingController();
+    final _price = TextEditingController();
+    final _stock = TextEditingController();
+    final _vendors = TextEditingController();
+    final _promo = TextEditingController();
+    final _description = TextEditingController();
+    final _category = TextEditingController();
+    final _images = TextEditingController();
 
-        var bodyEditProduct = json.decode(resEditProduct.body);
-        if (bodyEditProduct['Success'] == true) {
-          if (kDebugMode) {
-            print("New Product Successfully Update");
-          }
-          else {
+    @override
+    void initState(){
+      super.initState();
+      _id.text = widget.product['id'].toString();
+      _name.text = widget.product['name'].toString();
+      _price.text = widget.product['price'].toString();
+      _stock.text = widget.product['stock'].toString();
+      _vendors.text = widget.product['vendors'].toString();
+      _promo.text = widget.product['promo'].toString();
+      _description.text = widget.product['description'].toString();
+      _category.text = widget.product['category'].toString();
+      _images.text = widget.product['images'].toString();
+    }
+
+    Future<void> editProduct() async {
+    String urlEditProduct = 
+        "http://10.0.2.2/backend_ecommerce/updateproduct.php";
+      try {
+        var resEditProduct = await http.post(Uri.parse(urlEditProduct),body: {
+          "id":_id.text,
+          "name":_name.text,
+          "price":_price.text,
+          "stock":_stock.text,
+          "vendors":_vendors.text,
+          "promo":_promo.text,
+          "description":_description.text,
+          "category":_category.text,
+          "images":_images.text});
+
+          var bodyEditProduct = json.decode(resEditProduct.body);
+          if (bodyEditProduct['Success'] == true) {
             if (kDebugMode) {
-              print("New Product Failed Update");
+              print("New Product Successfully Update");
             }
+            else {
+              if (kDebugMode) {
+                print("New Product Failed Update");
+              }
+            }
+            
           }
-          
+      } catch (exc) {
+        if (kDebugMode) {
+          print(exc);
         }
-    } catch (exc) {
-      if (kDebugMode) {
-        print(exc);
       }
     }
-  }
-  
+    
 
 
   @override

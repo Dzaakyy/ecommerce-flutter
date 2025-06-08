@@ -1,6 +1,5 @@
 import 'dart:async';
 
-// import 'package:ecommercedzaky/allproduct.dart';
 import 'package:ecommercedzaky/electronic.dart';
 import 'package:flutter/material.dart';
 
@@ -24,15 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-
 @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Image.asset('./images/cart.png'),
       ),
-
     );
-
   }
 }

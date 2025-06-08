@@ -28,7 +28,7 @@ class _AllProductState extends State<AllProduct> {
   }
 
   Future<void> getAllProduct() async {
-    String urlAllproduct = "http://10.0.3.2/backend_ecommerce/allproduct.php";
+    String urlAllproduct = "http://10.0.2.2/backend_ecommerce/allproduct.php";
     try {
       var response = await http.get(Uri.parse(urlAllproduct));
       listAllProduct = jsonDecode(response.body);
@@ -43,7 +43,7 @@ class _AllProductState extends State<AllProduct> {
   }
 
   Future<void> deleteProduct(String id) async {
-    String urlDelete = "http://10.0.3.2/backend_ecommerce/deleteproduct.php";
+    String urlDelete = "http://10.0.2.2/backend_ecommerce/deleteproduct.php";
     try {
       var respponseDelete =
           await http.post(Uri.parse(urlDelete), body: {"id": id});
@@ -75,12 +75,12 @@ class _AllProductState extends State<AllProduct> {
       return;
     }
     String urlSearch =
-        "http://10.0.3.2/backend_ecommerce/searchproduct.php?search=$search";
+        "http://10.0.2.2/backend_ecommerce/searchproduct.php?search=$search";
     try {
       var responseSearch = await http.get(Uri.parse(urlSearch));
       final List listSearch = jsonDecode(responseSearch.body);
       setState(() {
-        listAllProduct = listSearch; //menukar data yang ada
+        listAllProduct = listSearch; 
       });
     } catch (exc) {
       if (kDebugMode) {

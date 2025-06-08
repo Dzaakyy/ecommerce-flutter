@@ -19,7 +19,7 @@ class _GridManClothesState extends State<GridManClothes> {
   List<dynamic> dataMan = [];
   Future<void> getManClothes() async {
     String urlAllManClothes =
-        "http://10.0.3.2/backend_ecommerce/manclothes.php";
+        "http://10.0.2.2/backend_ecommerce/manclothes.php";
     try {
       var response = await http.get(Uri.parse(urlAllManClothes));
       dataMan = jsonDecode(response.body);

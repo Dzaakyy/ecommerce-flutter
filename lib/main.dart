@@ -1,10 +1,4 @@
-import 'package:ecommercedzaky/electronic.dart';
-import 'package:ecommercedzaky/gridmanclothes.dart';
-import 'package:ecommercedzaky/gridmanshoes.dart';
-import 'package:ecommercedzaky/gridwomenclothe.dart';
 import 'package:ecommercedzaky/onboardingpage.dart';
-// import 'package:ecommercedzaky/gridwomenclothe.dart';
-// import 'package:ecommercedzaky/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
